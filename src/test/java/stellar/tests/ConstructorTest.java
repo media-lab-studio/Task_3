@@ -12,4 +12,10 @@ class ConstructorTest extends UiTest {
         home.select("Булки");
         home.checkSection("Булки");
     }
+    @InBrowsers @DisplayName("Переход к соусам") void sauces(Browser browser) {
+        start(browser);
+        home.open();
+        home.select("Соусы");
+        home.checkSection("Соусы");
+    }
 }

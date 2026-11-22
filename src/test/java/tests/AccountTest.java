@@ -1,6 +1,5 @@
 package tests;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,6 @@ public class AccountTest extends BaseTest {
     private ProfilePage profilePage;
 
     @BeforeEach
-    @Step("Подготовить страницы и данные сценария")
     public void setUpPage() {
         mainPage = new MainPage(driver);
         header = new HeaderComponent(driver);

@@ -1,6 +1,5 @@
 package util;
 
-import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import java.util.UUID;
@@ -20,7 +19,6 @@ public class TestUser {
         this.password = password;
     }
 
-    @Step("Создать пользователя через API")
     public void create() {
         accessToken = given()
                 .baseUri(BASE_URL)
@@ -30,7 +28,6 @@ public class TestUser {
                 .then().statusCode(200).extract().path("accessToken");
     }
 
-    @Step("Удалить тестового пользователя через API")
     public void delete() {
         if (accessToken == null) {
             // После регистрации через интерфейс получаем токен по данным формы.

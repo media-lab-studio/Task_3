@@ -1,7 +1,6 @@
 package tests;
 
 import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
@@ -19,7 +18,6 @@ public abstract class BaseTest {
     protected TestUser user;
 
     @BeforeEach
-    @Step("Запустить браузер")
     public void setUp() {
         String browser = System.getProperty("browser", "chrome");
         Allure.parameter("Браузер", browser);
@@ -48,7 +46,6 @@ public abstract class BaseTest {
     }
 
     @AfterEach
-    @Step("Завершить тест")
     public void tearDown(TestInfo testInfo) {
         System.out.println("=== Завершение теста: " + testInfo.getDisplayName() + " ===");
         try {

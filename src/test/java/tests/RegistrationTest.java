@@ -1,6 +1,5 @@
 package tests;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ public class RegistrationTest extends BaseTest {
     private RegistrationPage registrationPage;
 
     @BeforeEach
-    @Step("Подготовить страницы и данные сценария")
     public void setUpPage() {
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);

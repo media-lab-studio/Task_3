@@ -2,11 +2,15 @@ package stellar.tests;
 
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.WebDriver;
 import stellar.pages.*;
 import stellar.support.*;
+import java.util.logging.Logger;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 abstract class UiTest {
+    private final Logger log = Logger.getLogger(getClass().getName());
     WebDriver driver;
     HomePage home;
     Header header;
@@ -17,6 +21,7 @@ abstract class UiTest {
 
     void start(Browser browser) {
         driver = browser.start();
+        log.info(() -> "Открыта сессия " + browser);
         home = new HomePage(driver);
         header = new Header(driver);
         login = new LoginPage(driver);
@@ -34,11 +39,16 @@ abstract class UiTest {
         withUser(browser);
         login.open();
         login.login(user.email, user.password);
-        home.checkSignedIn();
+        assertTrue(home.canOrder(), "Предусловие: пользователь авторизован");
     }
 
-    @AfterEach @Step("Завершить тест") void tearDown() throws Exception {
+    @AfterEach @Step("Завершить тест") void tearDown(TestInfo test) throws Exception {
         try { if (user != null) user.cleanUp(); }
-        finally { if (driver != null) driver.quit(); }
+        finally {
+            if (driver != null) {
+                driver.quit();
+                log.info(() -> "Закрыта сессия: " + test.getDisplayName());
+            }
+        }
     }
 }

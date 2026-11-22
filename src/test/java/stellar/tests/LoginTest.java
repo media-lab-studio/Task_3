@@ -17,6 +17,12 @@ class LoginTest extends UiTest {
         header.account();
         completeLogin();
     }
+    @InBrowsers @DisplayName("Вход из формы регистрации") void fromRegistration(Browser browser) throws Exception {
+        withUser(browser);
+        registration.open();
+        registration.signIn();
+        completeLogin();
+    }
     private void completeLogin() {
         login.login(user.email, user.password);
         home.checkSignedIn();

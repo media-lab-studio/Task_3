@@ -10,5 +10,15 @@ class AccountTest extends UiTest {
         profile.checkOwner(user.email);
     }
 
+    private void openProfile(Browser browser) throws Exception {
+        signIn(browser);
+        header.account();
+        profile.checkOwner(user.email);
+    }
 
+    @InBrowsers @DisplayName("Из кабинета по ссылке «Конструктор»") void constructorLink(Browser browser) throws Exception {
+        openProfile(browser);
+        header.constructor();
+        home.checkOpen();
+    }
 }

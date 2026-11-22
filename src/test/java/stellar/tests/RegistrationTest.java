@@ -15,4 +15,12 @@ class RegistrationTest extends UiTest {
         home.checkSignedIn();
     }
 
+    @InBrowsers @DisplayName("Ошибка при пароле из пяти символов")
+    void shortPassword(Browser browser) {
+        start(browser);
+        user = new TestUser("Qa123");
+        registration.open();
+        registration.register(user.name, user.email, user.password);
+        registration.checkPasswordError();
+    }
 }

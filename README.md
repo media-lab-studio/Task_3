@@ -32,4 +32,4 @@ allure generate target/allure-results --clean --single-file -o allure-report
 | `src/test/java/stellar/support` | Запуск браузеров, подготовка и удаление тестовых пользователей по API. |
 | `src/test/resources` | Настройки Allure для тестового прогона. |
 
-Разбор структуры Sprint_6 и правила её применения: [структура UI-проекта](.opencode/skills/sprint-ui-layout/SKILL.md).
+Матрица прогона: регистрация (2 сценария), вход (4), кабинет и выход (4), разделы конструктора (3). В полном отчёте должно быть 26 результатов: по одному на каждый сценарий и браузер.

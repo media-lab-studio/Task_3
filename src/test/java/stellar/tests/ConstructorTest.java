@@ -18,4 +18,10 @@ class ConstructorTest extends UiTest {
         home.select("Соусы");
         home.checkSection("Соусы");
     }
+    @InBrowsers @DisplayName("Переход к начинкам") void fillings(Browser browser) {
+        start(browser);
+        home.open();
+        home.select("Начинки");
+        home.checkSection("Начинки");
+    }
 }

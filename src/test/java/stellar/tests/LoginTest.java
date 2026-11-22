@@ -11,6 +11,12 @@ class LoginTest extends UiTest {
         home.signIn();
         completeLogin();
     }
+    @InBrowsers @DisplayName("Вход через личный кабинет") void fromHeader(Browser browser) throws Exception {
+        withUser(browser);
+        home.open();
+        header.account();
+        completeLogin();
+    }
     private void completeLogin() {
         login.login(user.email, user.password);
         home.checkSignedIn();

@@ -26,4 +26,12 @@ class AccountTest extends UiTest {
         header.logo();
         home.checkOpen();
     }
+    @InBrowsers @DisplayName("Выход закрывает доступ к кабинету") void logout(Browser browser) throws Exception {
+        openProfile(browser);
+        profile.logout();
+        login.checkOpen();
+        home.open();
+        header.account();
+        login.checkOpen();
+    }
 }

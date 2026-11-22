@@ -6,7 +6,7 @@ import java.net.URI;
 import java.net.http.*;
 import java.time.Duration;
 import java.util.UUID;
-import static stellar.pages.Page.SITE;
+import static stellar.pages.BasePage.SITE;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUser {

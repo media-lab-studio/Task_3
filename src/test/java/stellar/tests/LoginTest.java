@@ -6,7 +6,7 @@ import stellar.support.Browser;
 import io.qameta.allure.Step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LoginTest extends UiTest {
+class LoginTest extends BaseTest {
     @InBrowsers @DisplayName("Вход с главной") void fromHome(Browser browser) throws Exception {
         withUser(browser);
         home.open();

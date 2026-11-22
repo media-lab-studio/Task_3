@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import stellar.support.Browser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ConstructorTest extends UiTest {
+class ConstructorTest extends BaseTest {
     @InBrowsers @DisplayName("Переход к булкам") void buns(Browser browser) {
         start(browser);
         home.open();

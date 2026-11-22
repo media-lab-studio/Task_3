@@ -23,4 +23,13 @@
 allure generate target/allure-results --clean --single-file -o allure-report
 ```
 
-`src/test/java/stellar/pages` содержит Page Object и общую шапку; `support` — фабрику браузеров и API для тестовых пользователей; `tests` — проверки регистрации, входа, кабинета и конструктора.
+## Структура проекта
+
+| Каталог | Содержимое |
+| --- | --- |
+| `src/main/java/stellar/pages` | `BasePage`, общий `HeaderComponent` и пять страниц. Здесь находятся локаторы, действия и чтение состояния UI. |
+| `src/test/java/stellar/tests` | `BaseTest`, параметризация по браузерам и четыре класса сценариев с проверками JUnit. |
+| `src/test/java/stellar/support` | Запуск браузеров, подготовка и удаление тестовых пользователей по API. |
+| `src/test/resources` | Настройки Allure для тестового прогона. |
+
+Разбор структуры Sprint_6 и правила её применения: [структура UI-проекта](.opencode/skills/sprint-ui-layout/SKILL.md).

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import stellar.support.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class RegistrationTest extends UiTest {
+class RegistrationTest extends BaseTest {
     @InBrowsers @DisplayName("Регистрация с паролем из шести символов")
     void minimumPassword(Browser browser) {
         start(browser);

@@ -3,7 +3,7 @@ package stellar.pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 
-public class LoginPage extends Page {
+public class LoginPage extends BasePage {
     private final By email = field("Email");
     private final By password = By.cssSelector("input[type=password]");
     private final By submit = By.xpath("//button[.='Войти']");

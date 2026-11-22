@@ -3,7 +3,7 @@ package stellar.pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 
-public class HomePage extends Page {
+public class HomePage extends BasePage {
     private final By signIn = By.xpath("//button[.='Войти в аккаунт']");
     private final By order = By.xpath("//button[.='Оформить заказ']");
     private final By heading = By.xpath("//h1[.='Соберите бургер']");

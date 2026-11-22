@@ -3,7 +3,7 @@ package stellar.pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 
-public class RegistrationPage extends Page {
+public class RegistrationPage extends BasePage {
     private final By name = field("Имя");
     private final By email = field("Email");
     private final By password = By.cssSelector("input[type=password]");

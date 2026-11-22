@@ -5,7 +5,7 @@ import stellar.support.Browser;
 import io.qameta.allure.Step;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AccountTest extends UiTest {
+class AccountTest extends BaseTest {
     @InBrowsers @DisplayName("Переход в свой кабинет") void openAccount(Browser browser) throws Exception {
         signIn(browser);
         header.account();

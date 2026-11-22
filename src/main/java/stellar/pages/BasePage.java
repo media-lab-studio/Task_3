@@ -4,12 +4,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import java.time.Duration;
 
-public abstract class Page {
+public abstract class BasePage {
     public static final String SITE = "https://qa-stellarburgers.education-services.ru";
     protected final WebDriver driver;
     protected final WebDriverWait wait;
 
-    protected Page(WebDriver driver) {
+    protected BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }

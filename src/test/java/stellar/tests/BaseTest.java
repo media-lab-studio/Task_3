@@ -9,11 +9,11 @@ import stellar.support.*;
 import java.util.logging.Logger;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-abstract class UiTest {
+abstract class BaseTest {
     private final Logger log = Logger.getLogger(getClass().getName());
     WebDriver driver;
     HomePage home;
-    Header header;
+    HeaderComponent header;
     LoginPage login;
     ProfilePage profile;
     RegistrationPage registration;
@@ -23,7 +23,7 @@ abstract class UiTest {
         driver = browser.start();
         log.info(() -> "Открыта сессия " + browser);
         home = new HomePage(driver);
-        header = new Header(driver);
+        header = new HeaderComponent(driver);
         login = new LoginPage(driver);
         profile = new ProfilePage(driver);
         registration = new RegistrationPage(driver);

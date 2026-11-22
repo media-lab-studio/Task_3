@@ -21,4 +21,9 @@ class AccountTest extends UiTest {
         header.constructor();
         home.checkOpen();
     }
+    @InBrowsers @DisplayName("Из кабинета по логотипу") void logoLink(Browser browser) throws Exception {
+        openProfile(browser);
+        header.logo();
+        home.checkOpen();
+    }
 }

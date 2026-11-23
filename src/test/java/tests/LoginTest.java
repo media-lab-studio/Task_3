@@ -19,16 +19,16 @@ public class LoginTest extends BaseTest {
     private RegistrationPage registrationPage;
     private RecoveryPage recoveryPage;
     private LoginPage loginPage;
+    private TestUser testUser;
 
     @BeforeEach
     public void setUpPage() {
-        mainPage = new MainPage(driver);
-        header = new HeaderComponent(driver);
-        registrationPage = new RegistrationPage(driver);
-        recoveryPage = new RecoveryPage(driver);
-        loginPage = new LoginPage(driver);
-        user = new TestUser("QaPass123");
-        user.create();
+        mainPage = new MainPage(driver());
+        header = new HeaderComponent(driver());
+        registrationPage = new RegistrationPage(driver());
+        recoveryPage = new RecoveryPage(driver());
+        loginPage = new LoginPage(driver());
+        testUser = prepareRegisteredUser("QaPass123");
     }
 
     @Test
@@ -36,10 +36,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromMainPage() {
         mainPage.openBaseUrl()
                 .clickLoginButton();
-        loginPage.enterEmail(user.email)
-                .enterPassword(user.password)
-                .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка оформления заказа");
+        loginAsCurrentUser();
     }
 
     @Test
@@ -47,10 +44,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromAccount() {
         mainPage.openBaseUrl();
         header.clickAccountLink();
-        loginPage.enterEmail(user.email)
-                .enterPassword(user.password)
-                .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка оформления заказа");
+        loginAsCurrentUser();
     }
 
     @Test
@@ -58,10 +52,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromRegistration() {
         registrationPage.openPage()
                 .clickLoginLink();
-        loginPage.enterEmail(user.email)
-                .enterPassword(user.password)
-                .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка оформления заказа");
+        loginAsCurrentUser();
     }
 
     @Test
@@ -69,9 +60,13 @@ public class LoginTest extends BaseTest {
     public void testLoginFromRecovery() {
         recoveryPage.openPage()
                 .clickLoginLink();
-        loginPage.enterEmail(user.email)
-                .enterPassword(user.password)
+        loginAsCurrentUser();
+    }
+
+    private void loginAsCurrentUser() {
+        loginPage.enterEmail(testUser.email)
+                .enterPassword(testUser.password)
                 .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка оформления заказа");
+        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка «Оформить заказ»");
     }
 }

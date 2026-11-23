@@ -13,7 +13,7 @@ public class ConstructorTest extends BaseTest {
 
     @BeforeEach
     public void setUpPage() {
-        mainPage = new MainPage(driver);
+        mainPage = new MainPage(driver());
     }
 
     @Test

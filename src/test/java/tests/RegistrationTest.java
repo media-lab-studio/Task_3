@@ -19,15 +19,15 @@ public class RegistrationTest extends BaseTest {
 
     @BeforeEach
     public void setUpPage() {
-        mainPage = new MainPage(driver);
-        loginPage = new LoginPage(driver);
-        registrationPage = new RegistrationPage(driver);
+        mainPage = new MainPage(driver());
+        loginPage = new LoginPage(driver());
+        registrationPage = new RegistrationPage(driver());
     }
 
     @Test
     @DisplayName("Регистрация с паролем из шести символов")
     public void testRegistrationWithMinimumPassword() {
-        user = new TestUser("Qa1234");
+        TestUser user = prepareUser("Qa1234");
         registrationPage.openPage()
                 .enterName(user.name)
                 .enterEmail(user.email)
@@ -37,13 +37,13 @@ public class RegistrationTest extends BaseTest {
         loginPage.enterEmail(user.email)
                 .enterPassword(user.password)
                 .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка оформления заказа");
+        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка «Оформить заказ»");
     }
 
     @Test
     @DisplayName("Ошибка при пароле из пяти символов")
     public void testShortPasswordError() {
-        user = new TestUser("Qa123");
+        TestUser user = prepareUser("Qa123");
         registrationPage.openPage()
                 .enterName(user.name)
                 .enterEmail(user.email)

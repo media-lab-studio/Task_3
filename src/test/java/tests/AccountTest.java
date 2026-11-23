@@ -18,56 +18,57 @@ public class AccountTest extends BaseTest {
     private HeaderComponent header;
     private LoginPage loginPage;
     private ProfilePage profilePage;
+    private TestUser testUser;
 
     @BeforeEach
     public void setUpPage() {
-        mainPage = new MainPage(driver);
-        header = new HeaderComponent(driver);
-        loginPage = new LoginPage(driver);
-        profilePage = new ProfilePage(driver);
-        user = new TestUser("QaPass123");
-        user.create();
+        mainPage = new MainPage(driver());
+        header = new HeaderComponent(driver());
+        loginPage = new LoginPage(driver());
+        profilePage = new ProfilePage(driver());
+        testUser = prepareRegisteredUser("QaPass123");
         loginPage.openPage()
-                .enterEmail(user.email)
-                .enterPassword(user.password)
+                .enterEmail(testUser.email)
+                .enterPassword(testUser.password)
                 .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка оформления заказа");
+        assertTrue(mainPage.isOrderButtonDisplayed(), "Перед тестом не удалось войти в аккаунт");
     }
 
     @Test
     @DisplayName("Переход в личный кабинет")
     public void testOpenAccount() {
-        header.clickAccountLink();
-        assertEquals(user.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");
+        openProfile();
     }
 
     @Test
     @DisplayName("Переход из кабинета по ссылке «Конструктор»")
     public void testConstructorLink() {
-        header.clickAccountLink();
-        assertEquals(user.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");
+        openProfile();
         header.clickConstructorLink();
-        assertTrue(mainPage.isConstructorDisplayed(), "Ссылка должна открыть конструктор");
+        assertTrue(mainPage.isConstructorDisplayed(), "Должен открыться конструктор");
     }
 
     @Test
     @DisplayName("Переход из кабинета по логотипу")
     public void testStellarLogo() {
-        header.clickAccountLink();
-        assertEquals(user.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");
+        openProfile();
         header.clickStellarLogo();
-        assertTrue(mainPage.isConstructorDisplayed(), "Логотип должен открыть конструктор");
+        assertTrue(mainPage.isConstructorDisplayed(), "Должен открыться конструктор");
     }
 
     @Test
     @DisplayName("Выход из аккаунта")
     public void testLogout() {
-        header.clickAccountLink();
-        assertEquals(user.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");
+        openProfile();
         profilePage.clickLogoutButton();
         assertTrue(loginPage.isLoginFormDisplayed(), "После выхода должна открыться форма входа");
         mainPage.openBaseUrl();
         header.clickAccountLink();
-        assertTrue(loginPage.isLoginFormDisplayed(), "После выхода кабинет должен запрашивать вход");
+        assertTrue(loginPage.isLoginFormDisplayed(), "Без авторизации личный кабинет недоступен");
+    }
+
+    private void openProfile() {
+        header.clickAccountLink();
+        assertEquals(testUser.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");
     }
 }

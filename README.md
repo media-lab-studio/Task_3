@@ -5,7 +5,7 @@
 ## Запуск в IDEA или PowerShell
 
 1. Откройте `pom.xml` как Maven-проект. Для Project SDK и Maven Runner выберите JDK 11. В терминале проверьте `mvn -v`: Maven должен использовать Java 11.
-2. Установите Chrome и Яндекс.Браузер. Скачайте [YandexDriver](https://github.com/yandex/YandexDriver/releases) для своей версии браузера и распакуйте его. Для Chrome драйвер подбирает Selenium Manager; при необходимости можно передать `-Dwebdriver.chrome.driver=...`.
+2. Установите Chrome 157.x и Яндекс.Браузер. Для Chrome в `src/test/resources/drivers/chromedriver.exe` лежит ChromeDriver 157.0.8103.78: `BrowserType` берёт его из classpath, поэтому Selenium Manager не обращается к сети. Другой путь можно задать через `-Dwebdriver.chrome.driver=...`. Для Яндекса скачайте [YandexDriver](https://github.com/yandex/YandexDriver/releases) для своей версии браузера и распакуйте его.
 3. Укажите путь к YandexDriver и запустите весь набор:
 
    ```powershell

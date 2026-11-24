@@ -63,6 +63,7 @@ public class LoginTest extends BaseTest {
         loginAsCurrentUser();
     }
 
+    @io.qameta.allure.Step("Войти и проверить доступность оформления заказа")
     private void loginAsCurrentUser() {
         loginPage.enterEmail(testUser.email)
                 .enterPassword(testUser.password)

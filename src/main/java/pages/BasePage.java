@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +23,7 @@ public abstract class BasePage {
      *
      * @param url страницы
      */
+    @Step("Открыть страницу {url}")
     public void openUrl(String url) {
         System.out.println("Открывается страница с URL: " + url);
         driver.get(url);

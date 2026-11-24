@@ -67,6 +67,7 @@ public class AccountTest extends BaseTest {
         assertTrue(loginPage.isLoginFormDisplayed(), "Без авторизации личный кабинет недоступен");
     }
 
+    @io.qameta.allure.Step("Открыть профиль и проверить email пользователя")
     private void openProfile() {
         header.clickAccountLink();
         assertEquals(testUser.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");

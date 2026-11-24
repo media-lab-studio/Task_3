@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,6 +36,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Открыть форму регистрации.
      */
+    @Step("Открыть форму регистрации")
     public RegistrationPage openPage() {
         System.out.println("Открыть форму регистрации");
         openUrl(BASE_URL + "/register");
@@ -44,6 +46,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Ввести имя.
      */
+    @Step("Ввести имя")
     public RegistrationPage enterName(String name) {
         System.out.println("Ввести имя");
         wait.until(ExpectedConditions.visibilityOfElementLocated(nameInput)).sendKeys(name);
@@ -53,6 +56,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Ввести email.
      */
+    @Step("Ввести email")
     public RegistrationPage enterEmail(String email) {
         System.out.println("Ввести email");
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);
@@ -62,6 +66,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Ввести пароль.
      */
+    @Step("Ввести пароль")
     public RegistrationPage enterPassword(String password) {
         System.out.println("Ввести пароль");
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput)).sendKeys(password);
@@ -71,6 +76,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Нажать «Зарегистрироваться».
      */
+    @Step("Нажать «Зарегистрироваться»")
     public RegistrationPage clickSubmitButton() {
         System.out.println("Нажать «Зарегистрироваться»");
         wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
@@ -80,6 +86,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Перейти по ссылке «Войти».
      */
+    @Step("Перейти по ссылке «Войти»")
     public RegistrationPage clickLoginLink() {
         System.out.println("Перейти по ссылке «Войти»");
         wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();
@@ -89,6 +96,7 @@ public class RegistrationPage extends BasePage {
     /**
      * Прочитать ошибку пароля.
      */
+    @Step("Прочитать ошибку пароля")
     public String getPasswordErrorMessage() {
         System.out.println("Прочитать ошибку пароля");
         return wait.until(ExpectedConditions.visibilityOfElementLocated(passwordErrorMessage)).getText();

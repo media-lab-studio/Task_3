@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +24,7 @@ public class ProfilePage extends BasePage {
     /**
      * Прочитать логин владельца кабинета.
      */
+    @Step("Прочитать логин владельца кабинета")
     public String getLoginValue() {
         System.out.println("Прочитать логин владельца кабинета");
         return wait.until(d -> {
@@ -34,6 +36,7 @@ public class ProfilePage extends BasePage {
     /**
      * Выйти из аккаунта.
      */
+    @Step("Выйти из аккаунта")
     public ProfilePage clickLogoutButton() {
         System.out.println("Выйти из аккаунта");
         wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();

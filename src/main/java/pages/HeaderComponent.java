@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,6 +27,7 @@ public class HeaderComponent extends BasePage {
     /**
      * Нажать «Личный кабинет».
      */
+    @Step("Нажать «Личный кабинет»")
     public HeaderComponent clickAccountLink() {
         System.out.println("Нажать «Личный кабинет»");
         wait.until(ExpectedConditions.elementToBeClickable(accountLink)).click();
@@ -35,6 +37,7 @@ public class HeaderComponent extends BasePage {
     /**
      * Нажать «Конструктор».
      */
+    @Step("Нажать «Конструктор»")
     public HeaderComponent clickConstructorLink() {
         System.out.println("Нажать «Конструктор»");
         wait.until(ExpectedConditions.elementToBeClickable(constructorLink)).click();
@@ -44,6 +47,7 @@ public class HeaderComponent extends BasePage {
     /**
      * Нажать логотип Stellar Burgers.
      */
+    @Step("Нажать логотип Stellar Burgers")
     public HeaderComponent clickStellarLogo() {
         System.out.println("Нажать логотип Stellar Burgers");
         wait.until(ExpectedConditions.elementToBeClickable(stellarLogo)).click();

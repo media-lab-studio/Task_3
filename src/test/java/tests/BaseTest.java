@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
@@ -14,24 +15,22 @@ import java.util.logging.Logger;
  */
 public abstract class BaseTest {
 
-    static {
-        LoggingConfig.configure();
-    }
-
     private static final Logger LOG = Logger.getLogger(BaseTest.class.getName());
 
     private WebDriver driver;
     private TestUser user;
 
     @BeforeEach
+    @Step("Запустить браузер")
     public void setUp() {
         String browser = System.getProperty("browser", "chrome");
         configureAllure(browser);
         LOG.info("Запуск браузера: " + browser);
-        driver = BrowserType.from(browser).createDriver();
+        driver = BrowserFactory.create(browser);
     }
 
     @AfterEach
+    @Step("Удалить тестовые данные и закрыть браузер")
     public void tearDown(TestInfo testInfo) {
         LOG.info("Завершение теста: " + testInfo.getDisplayName());
         try {
@@ -59,6 +58,7 @@ public abstract class BaseTest {
      * @param password пароль пользователя
      * @return созданный пользователь
      */
+    @Step("Подготовить уникальные данные пользователя")
     protected TestUser prepareUser(String password) {
         user = new TestUser(password);
         return user;
@@ -70,6 +70,7 @@ public abstract class BaseTest {
      * @param password пароль пользователя
      * @return зарегистрированный пользователь
      */
+    @Step("Подготовить зарегистрированного пользователя")
     protected TestUser prepareRegisteredUser(String password) {
         TestUser preparedUser = prepareUser(password);
         preparedUser.create();

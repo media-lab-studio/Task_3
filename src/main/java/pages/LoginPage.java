@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,6 +27,7 @@ public class LoginPage extends BasePage {
     /**
      * Открыть страницу входа.
      */
+    @Step("Открыть страницу входа")
     public LoginPage openPage() {
         System.out.println("Открыть страницу входа");
         openUrl(BASE_URL + "/login");
@@ -35,6 +37,7 @@ public class LoginPage extends BasePage {
     /**
      * Ввести email.
      */
+    @Step("Ввести email")
     public LoginPage enterEmail(String email) {
         System.out.println("Ввести email");
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);
@@ -44,6 +47,7 @@ public class LoginPage extends BasePage {
     /**
      * Ввести пароль.
      */
+    @Step("Ввести пароль")
     public LoginPage enterPassword(String password) {
         System.out.println("Ввести пароль");
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput)).sendKeys(password);
@@ -53,6 +57,7 @@ public class LoginPage extends BasePage {
     /**
      * Нажать «Войти».
      */
+    @Step("Нажать «Войти»")
     public LoginPage clickSubmitButton() {
         System.out.println("Нажать «Войти»");
         wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
@@ -62,6 +67,7 @@ public class LoginPage extends BasePage {
     /**
      * Проверить отображение формы входа.
      */
+    @Step("Проверить отображение формы входа")
     public boolean isLoginFormDisplayed() {
         System.out.println("Проверить отображение формы входа");
         return wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton)).isDisplayed();

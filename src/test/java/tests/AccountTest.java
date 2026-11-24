@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,12 +27,9 @@ public class AccountTest extends BaseTest {
         header = new HeaderComponent(driver());
         loginPage = new LoginPage(driver());
         profilePage = new ProfilePage(driver());
-        testUser = prepareRegisteredUser("QaPass123");
-        loginPage.openPage()
-                .enterEmail(testUser.email)
-                .enterPassword(testUser.password)
-                .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "Перед тестом не удалось войти в аккаунт");
+        testUser = prepareRegisteredUser();
+        loginPage.openPage();
+        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -45,7 +43,7 @@ public class AccountTest extends BaseTest {
     public void testConstructorLink() {
         openProfile();
         header.clickConstructorLink();
-        assertTrue(mainPage.isConstructorDisplayed(), "Должен открыться конструктор");
+        assertConstructorDisplayed();
     }
 
     @Test
@@ -53,7 +51,7 @@ public class AccountTest extends BaseTest {
     public void testStellarLogo() {
         openProfile();
         header.clickStellarLogo();
-        assertTrue(mainPage.isConstructorDisplayed(), "Должен открыться конструктор");
+        assertConstructorDisplayed();
     }
 
     @Test
@@ -67,7 +65,12 @@ public class AccountTest extends BaseTest {
         assertTrue(loginPage.isLoginFormDisplayed(), "Без авторизации личный кабинет недоступен");
     }
 
-    @io.qameta.allure.Step("Открыть профиль и проверить email пользователя")
+    @Step("Проверить, что открылся конструктор")
+    private void assertConstructorDisplayed() {
+        assertTrue(mainPage.isConstructorDisplayed(), "Должен открыться конструктор");
+    }
+
+    @Step("Открыть профиль и проверить email пользователя")
     private void openProfile() {
         header.clickAccountLink();
         assertEquals(testUser.email, profilePage.getLoginValue(), "Должен открыться профиль текущего пользователя");

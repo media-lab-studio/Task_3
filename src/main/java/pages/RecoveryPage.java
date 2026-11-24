@@ -23,7 +23,7 @@ public class RecoveryPage extends BasePage {
      */
     @Step("Открыть форму восстановления пароля")
     public RecoveryPage openPage() {
-        System.out.println("Открыть форму восстановления пароля");
+        log.info("Открыть форму восстановления пароля");
         openUrl(BASE_URL + "/forgot-password");
         return this;
     }
@@ -33,7 +33,7 @@ public class RecoveryPage extends BasePage {
      */
     @Step("Перейти по ссылке «Войти»")
     public RecoveryPage clickLoginLink() {
-        System.out.println("Перейти по ссылке «Войти»");
+        log.info("Перейти по ссылке «Войти»");
         wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();
         return this;
     }

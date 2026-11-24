@@ -10,8 +10,6 @@ import pages.RecoveryPage;
 import pages.RegistrationPage;
 import util.TestUser;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class LoginTest extends BaseTest {
 
     private MainPage mainPage;
@@ -28,7 +26,7 @@ public class LoginTest extends BaseTest {
         registrationPage = new RegistrationPage(driver());
         recoveryPage = new RecoveryPage(driver());
         loginPage = new LoginPage(driver());
-        testUser = prepareRegisteredUser("QaPass123");
+        testUser = prepareRegisteredUser();
     }
 
     @Test
@@ -36,7 +34,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromMainPage() {
         mainPage.openBaseUrl()
                 .clickLoginButton();
-        loginAsCurrentUser();
+        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -44,7 +42,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromAccount() {
         mainPage.openBaseUrl();
         header.clickAccountLink();
-        loginAsCurrentUser();
+        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -52,7 +50,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromRegistration() {
         registrationPage.openPage()
                 .clickLoginLink();
-        loginAsCurrentUser();
+        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -60,14 +58,6 @@ public class LoginTest extends BaseTest {
     public void testLoginFromRecovery() {
         recoveryPage.openPage()
                 .clickLoginLink();
-        loginAsCurrentUser();
-    }
-
-    @io.qameta.allure.Step("Войти и проверить доступность оформления заказа")
-    private void loginAsCurrentUser() {
-        loginPage.enterEmail(testUser.email)
-                .enterPassword(testUser.password)
-                .clickSubmitButton();
-        assertTrue(mainPage.isOrderButtonDisplayed(), "После входа должна отображаться кнопка «Оформить заказ»");
+        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
     }
 }

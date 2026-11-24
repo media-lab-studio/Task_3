@@ -12,24 +12,25 @@ final class BrowserFactory {
 
     static WebDriver create(String browser) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1440,1000");
-        if (Boolean.parseBoolean(System.getProperty("headless", "true"))) {
-            options.addArguments("--headless=new");
-        }
+        options.addArguments("--start-maximized");
+        String path;
         switch (browser) {
             case "chrome":
-                return new ChromeDriver(options);
+                path = System.getProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+                break;
             case "yandex":
-                String path = System.getProperty("yandex.driver", System.getenv("YANDEX_DRIVER"));
-                if (path == null || !new File(path).isFile()) {
-                    throw new IllegalArgumentException("Укажите путь к YandexDriver в YANDEX_DRIVER или -Dyandex.driver");
-                }
+                path = System.getProperty("yandex.driver", System.getenv().getOrDefault("YANDEX_DRIVER", "drivers/yandexdriver.exe"));
                 options.setBinary(System.getProperty("yandex.binary", System.getenv("LOCALAPPDATA")
                         + "/Yandex/YandexBrowser/Application/browser.exe"));
-                return new ChromeDriver(new ChromeDriverService.Builder()
-                        .usingDriverExecutable(new File(path)).build(), options);
+                break;
             default:
                 throw new IllegalArgumentException("Неизвестный браузер: " + browser);
         }
+        File executable = new File(path).getAbsoluteFile();
+        if (!executable.isFile()) {
+            throw new IllegalStateException("Не найден драйвер для " + browser + ": " + executable
+                    + ". Распакуйте сюда драйвер, совместимый с установленным браузером.");
+        }
+        return new ChromeDriver(new ChromeDriverService.Builder().usingDriverExecutable(executable).build(), options);
     }
 }

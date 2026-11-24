@@ -26,7 +26,7 @@ public class ProfilePage extends BasePage {
      */
     @Step("Прочитать логин владельца кабинета")
     public String getLoginValue() {
-        System.out.println("Прочитать логин владельца кабинета");
+        log.info("Прочитать логин владельца кабинета");
         return wait.until(d -> {
             String email = d.findElement(loginInput).getDomProperty("value");
             return email == null || email.isBlank() ? null : email;
@@ -38,7 +38,7 @@ public class ProfilePage extends BasePage {
      */
     @Step("Выйти из аккаунта")
     public ProfilePage clickLogoutButton() {
-        System.out.println("Выйти из аккаунта");
+        log.info("Выйти из аккаунта");
         wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
         return this;
     }

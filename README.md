@@ -5,15 +5,15 @@
 ## Запуск в IDEA или PowerShell
 
 1. Откройте `pom.xml` как Maven-проект. Для Project SDK и Maven Runner выберите JDK 11. В терминале проверьте `mvn -v`: Maven должен использовать Java 11.
-2. Установите Google Chrome и Яндекс.Браузер. Для Chrome драйвер подбирает Selenium Manager (для первой загрузки нужен интернет). Если драйвер уже скачан, передайте Maven параметр `"-Dwebdriver.chrome.driver=C:\drivers\chromedriver.exe"` с путём к версии, совместимой с установленным Chrome. Для Яндекса скачайте [YandexDriver](https://github.com/yandex/YandexDriver/releases) для своей версии браузера и распакуйте его.
-3. Укажите путь к YandexDriver и запустите весь набор:
+2. Установите Google Chrome и Яндекс.Браузер. Распакуйте `chromedriver.exe` из [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) и `yandexdriver.exe` из [YandexDriver](https://github.com/yandex/YandexDriver/releases) в каталог `drivers/` в корне проекта. Для Chrome подбирайте драйвер по первым трём компонентам версии браузера (`MAJOR.MINOR.BUILD`), для Яндекса — по версии браузера из описания релиза. Драйверы не скачиваются при запуске тестов. При необходимости пути можно переопределить через `-Dwebdriver.chrome.driver`, `-Dyandex.driver` или `YANDEX_DRIVER` (для Яндекса).
+3. Из корня проекта проверьте версию драйвера и запустите весь набор:
 
    ```powershell
-   $env:YANDEX_DRIVER = 'C:\drivers\yandexdriver.exe'
+   .\drivers\chromedriver.exe --version
    mvn clean test
    ```
 
-   Maven последовательно выполняет весь набор в Chrome и Яндекс.Браузере. При нестандартной установке передайте `"-Dyandex.binary=полный путь к браузеру"`. Для запуска с окнами добавьте `-Dheadless=false`. При запуске отдельного JUnit-теста из IDEA по умолчанию используется Chrome; для Яндекс.Браузера добавьте `-Dbrowser=yandex` в VM options.
+   Maven последовательно выполняет весь набор в Chrome и Яндекс.Браузере. Оба браузера запускаются с видимым окном, развёрнутым на весь экран. При нестандартной установке передайте `"-Dyandex.binary=полный путь к браузеру"`. При запуске отдельного JUnit-теста из IDEA по умолчанию используется Chrome; для Яндекс.Браузера добавьте `-Dbrowser=yandex` в VM options.
 
 ## Отчёт
 

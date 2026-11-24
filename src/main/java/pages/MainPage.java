@@ -38,7 +38,7 @@ public class MainPage extends BasePage {
      */
     @Step("Открыть главную страницу")
     public MainPage openBaseUrl() {
-        System.out.println("Открыть главную страницу");
+        log.info("Открыть главную страницу");
         openUrl(BASE_URL + "/");
         return this;
     }
@@ -48,7 +48,7 @@ public class MainPage extends BasePage {
      */
     @Step("Нажать «Войти в аккаунт»")
     public MainPage clickLoginButton() {
-        System.out.println("Нажать «Войти в аккаунт»");
+        log.info("Нажать «Войти в аккаунт»");
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
         return this;
     }
@@ -58,7 +58,7 @@ public class MainPage extends BasePage {
      */
     @Step("Проверить отображение конструктора")
     public boolean isConstructorDisplayed() {
-        System.out.println("Проверить отображение конструктора");
+        log.info("Проверить отображение конструктора");
         return wait.until(ExpectedConditions.visibilityOfElementLocated(constructorHeading)).isDisplayed();
     }
 
@@ -67,7 +67,7 @@ public class MainPage extends BasePage {
      */
     @Step("Проверить отображение кнопки заказа")
     public boolean isOrderButtonDisplayed() {
-        System.out.println("Проверить отображение кнопки заказа");
+        log.info("Проверить отображение кнопки заказа");
         return wait.until(ExpectedConditions.visibilityOfElementLocated(orderButton)).isDisplayed();
     }
 
@@ -76,7 +76,7 @@ public class MainPage extends BasePage {
      */
     @Step("Выбрать раздел {section}")
     public MainPage clickSectionTab(String section) {
-        System.out.println("Выбрать раздел {section}");
+        log.info(() -> "Выбрать раздел " + section);
         wait.until(ExpectedConditions.visibilityOfElementLocated(ingredientCard));
         By tab = By.xpath(String.format(SECTION_TAB_XPATH, section));
         wait.until(ExpectedConditions.elementToBeClickable(tab)).click();
@@ -88,7 +88,7 @@ public class MainPage extends BasePage {
      */
     @Step("Прочитать активную вкладку после прокрутки к разделу {section}")
     public String getActiveSection(String section) {
-        System.out.println("Прочитать активную вкладку после прокрутки к разделу {section}");
+        log.info(() -> "Прочитать активную вкладку после прокрутки к разделу " + section);
         return wait.until(d -> {
             String active = d.findElement(activeTab).getText();
             return section.equals(active) ? active : null;

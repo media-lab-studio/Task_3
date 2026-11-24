@@ -29,7 +29,7 @@ public class HeaderComponent extends BasePage {
      */
     @Step("Нажать «Личный кабинет»")
     public HeaderComponent clickAccountLink() {
-        System.out.println("Нажать «Личный кабинет»");
+        log.info("Нажать «Личный кабинет»");
         wait.until(ExpectedConditions.elementToBeClickable(accountLink)).click();
         return this;
     }
@@ -39,7 +39,7 @@ public class HeaderComponent extends BasePage {
      */
     @Step("Нажать «Конструктор»")
     public HeaderComponent clickConstructorLink() {
-        System.out.println("Нажать «Конструктор»");
+        log.info("Нажать «Конструктор»");
         wait.until(ExpectedConditions.elementToBeClickable(constructorLink)).click();
         return this;
     }
@@ -49,7 +49,7 @@ public class HeaderComponent extends BasePage {
      */
     @Step("Нажать логотип Stellar Burgers")
     public HeaderComponent clickStellarLogo() {
-        System.out.println("Нажать логотип Stellar Burgers");
+        log.info("Нажать логотип Stellar Burgers");
         wait.until(ExpectedConditions.elementToBeClickable(stellarLogo)).click();
         return this;
     }

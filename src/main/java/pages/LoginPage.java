@@ -29,7 +29,7 @@ public class LoginPage extends BasePage {
      */
     @Step("Открыть страницу входа")
     public LoginPage openPage() {
-        System.out.println("Открыть страницу входа");
+        log.info("Открыть страницу входа");
         openUrl(BASE_URL + "/login");
         return this;
     }
@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
      */
     @Step("Ввести email")
     public LoginPage enterEmail(String email) {
-        System.out.println("Ввести email");
+        log.info("Ввести email");
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);
         return this;
     }
@@ -49,7 +49,7 @@ public class LoginPage extends BasePage {
      */
     @Step("Ввести пароль")
     public LoginPage enterPassword(String password) {
-        System.out.println("Ввести пароль");
+        log.info("Ввести пароль");
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput)).sendKeys(password);
         return this;
     }
@@ -59,7 +59,7 @@ public class LoginPage extends BasePage {
      */
     @Step("Нажать «Войти»")
     public LoginPage clickSubmitButton() {
-        System.out.println("Нажать «Войти»");
+        log.info("Нажать «Войти»");
         wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
         return this;
     }
@@ -69,7 +69,7 @@ public class LoginPage extends BasePage {
      */
     @Step("Проверить отображение формы входа")
     public boolean isLoginFormDisplayed() {
-        System.out.println("Проверить отображение формы входа");
+        log.info("Проверить отображение формы входа");
         return wait.until(ExpectedConditions.visibilityOfElementLocated(submitButton)).isDisplayed();
     }
 }

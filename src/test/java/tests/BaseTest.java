@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.WebDriver;
 import util.TestUser;
+import util.UiLog;
 
 import java.util.logging.Logger;
 
@@ -15,7 +16,8 @@ import java.util.logging.Logger;
  */
 public abstract class BaseTest {
 
-    private static final Logger LOG = Logger.getLogger(BaseTest.class.getName());
+    private static final Logger LOG = UiLog.forClass(BaseTest.class);
+    private static final String DEFAULT_TEST_PASSWORD = "QaPass123";
 
     private WebDriver driver;
     private TestUser user;
@@ -67,12 +69,11 @@ public abstract class BaseTest {
     /**
      * Подготовить пользователя и сразу зарегистрировать его через API.
      *
-     * @param password пароль пользователя
      * @return зарегистрированный пользователь
      */
     @Step("Подготовить зарегистрированного пользователя")
-    protected TestUser prepareRegisteredUser(String password) {
-        TestUser preparedUser = prepareUser(password);
+    protected TestUser prepareRegisteredUser() {
+        TestUser preparedUser = prepareUser(DEFAULT_TEST_PASSWORD);
         preparedUser.create();
         return preparedUser;
     }

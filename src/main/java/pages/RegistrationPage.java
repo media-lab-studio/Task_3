@@ -38,7 +38,7 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Открыть форму регистрации")
     public RegistrationPage openPage() {
-        System.out.println("Открыть форму регистрации");
+        log.info("Открыть форму регистрации");
         openUrl(BASE_URL + "/register");
         return this;
     }
@@ -48,7 +48,7 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Ввести имя")
     public RegistrationPage enterName(String name) {
-        System.out.println("Ввести имя");
+        log.info("Ввести имя");
         wait.until(ExpectedConditions.visibilityOfElementLocated(nameInput)).sendKeys(name);
         return this;
     }
@@ -58,7 +58,7 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Ввести email")
     public RegistrationPage enterEmail(String email) {
-        System.out.println("Ввести email");
+        log.info("Ввести email");
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);
         return this;
     }
@@ -68,7 +68,7 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Ввести пароль")
     public RegistrationPage enterPassword(String password) {
-        System.out.println("Ввести пароль");
+        log.info("Ввести пароль");
         wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput)).sendKeys(password);
         return this;
     }
@@ -78,7 +78,7 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Нажать «Зарегистрироваться»")
     public RegistrationPage clickSubmitButton() {
-        System.out.println("Нажать «Зарегистрироваться»");
+        log.info("Нажать «Зарегистрироваться»");
         wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
         return this;
     }
@@ -88,7 +88,7 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Перейти по ссылке «Войти»")
     public RegistrationPage clickLoginLink() {
-        System.out.println("Перейти по ссылке «Войти»");
+        log.info("Перейти по ссылке «Войти»");
         wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();
         return this;
     }
@@ -98,7 +98,8 @@ public class RegistrationPage extends BasePage {
      */
     @Step("Прочитать ошибку пароля")
     public String getPasswordErrorMessage() {
-        System.out.println("Прочитать ошибку пароля");
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(passwordErrorMessage)).getText();
+        String message = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordErrorMessage)).getText();
+        log.info(() -> "Ошибка пароля: " + message);
+        return message;
     }
 }

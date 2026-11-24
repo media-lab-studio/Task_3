@@ -59,9 +59,19 @@ public class AccountTest extends BaseTest {
     public void testLogout() {
         openProfile();
         profilePage.clickLogoutButton();
-        assertTrue(loginPage.isLoginFormDisplayed(), "После выхода должна открыться форма входа");
+        assertLoginFormDisplayedAfterLogout();
         mainPage.openBaseUrl();
         header.clickAccountLink();
+        assertAccountRequiresLogin();
+    }
+
+    @Step("Проверить, что после выхода открылась форма входа")
+    private void assertLoginFormDisplayedAfterLogout() {
+        assertTrue(loginPage.isLoginFormDisplayed(), "После выхода должна открыться форма входа");
+    }
+
+    @Step("Проверить, что личный кабинет требует повторного входа")
+    private void assertAccountRequiresLogin() {
         assertTrue(loginPage.isLoginFormDisplayed(), "Без авторизации личный кабинет недоступен");
     }
 

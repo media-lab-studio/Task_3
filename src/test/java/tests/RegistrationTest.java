@@ -30,7 +30,7 @@ public class RegistrationTest extends BaseTest {
     public void testRegistrationWithMinimumPassword() {
         TestUser user = prepareUser("Qa1234");
         submitRegistrationForm(user);
-        assertTrue(loginPage.isLoginFormDisplayed(), "После регистрации должна открыться форма входа");
+        assertLoginFormDisplayedAfterRegistration();
         LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, user);
     }
 
@@ -39,6 +39,16 @@ public class RegistrationTest extends BaseTest {
     public void testShortPasswordError() {
         TestUser user = prepareUser("Qa123");
         submitRegistrationForm(user);
+        assertShortPasswordErrorDisplayed();
+    }
+
+    @Step("Проверить, что после регистрации открылась форма входа")
+    private void assertLoginFormDisplayedAfterRegistration() {
+        assertTrue(loginPage.isLoginFormDisplayed(), "После регистрации должна открыться форма входа");
+    }
+
+    @Step("Проверить текст ошибки для короткого пароля")
+    private void assertShortPasswordErrorDisplayed() {
         assertEquals("Некорректный пароль", registrationPage.getPasswordErrorMessage(),
                 "Под полем пароля должна отображаться ошибка");
     }

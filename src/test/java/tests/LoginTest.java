@@ -3,11 +3,7 @@ package tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.HeaderComponent;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.RecoveryPage;
-import pages.RegistrationPage;
+import pages.*;
 import util.TestUser;
 
 public class LoginTest extends BaseTest {
@@ -34,7 +30,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromMainPage() {
         mainPage.openBaseUrl()
                 .clickLoginButton();
-        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
+        LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -42,7 +38,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromAccount() {
         mainPage.openBaseUrl();
         header.clickAccountLink();
-        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
+        LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -50,7 +46,7 @@ public class LoginTest extends BaseTest {
     public void testLoginFromRegistration() {
         registrationPage.openPage()
                 .clickLoginLink();
-        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
+        LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, testUser);
     }
 
     @Test
@@ -58,6 +54,6 @@ public class LoginTest extends BaseTest {
     public void testLoginFromRecovery() {
         recoveryPage.openPage()
                 .clickLoginLink();
-        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
+        LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, testUser);
     }
 }

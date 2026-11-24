@@ -29,7 +29,7 @@ public class AccountTest extends BaseTest {
         profilePage = new ProfilePage(driver());
         testUser = prepareRegisteredUser();
         loginPage.openPage();
-        LoginSteps.loginAndVerify(loginPage, mainPage, testUser);
+        LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, testUser);
     }
 
     @Test

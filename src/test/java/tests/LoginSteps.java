@@ -8,10 +8,11 @@ import util.TestUser;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class LoginSteps {
-    private LoginSteps() { }
+    private LoginSteps() {
+    }
 
     @Step("Войти и проверить доступность оформления заказа")
-    static void loginAndVerify(LoginPage loginPage, MainPage mainPage, TestUser user) {
+    static void loginAndVerifyOrderButtonVisible(LoginPage loginPage, MainPage mainPage, TestUser user) {
         loginPage.enterEmail(user.email)
                 .enterPassword(user.password)
                 .clickSubmitButton();

@@ -31,7 +31,7 @@ public class RegistrationTest extends BaseTest {
         TestUser user = prepareUser("Qa1234");
         submitRegistrationForm(user);
         assertTrue(loginPage.isLoginFormDisplayed(), "После регистрации должна открыться форма входа");
-        LoginSteps.loginAndVerify(loginPage, mainPage, user);
+        LoginSteps.loginAndVerifyOrderButtonVisible(loginPage, mainPage, user);
     }
 
     @Test

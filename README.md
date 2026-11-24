@@ -5,7 +5,7 @@
 ## Запуск в IDEA или PowerShell
 
 1. Откройте `pom.xml` как Maven-проект. Для Project SDK и Maven Runner выберите JDK 11. В терминале проверьте `mvn -v`: Maven должен использовать Java 11.
-2. Установите Google Chrome и Яндекс.Браузер. Распакуйте `chromedriver.exe` из [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/) и `yandexdriver.exe` из [YandexDriver](https://github.com/yandex/YandexDriver/releases) в каталог `drivers/` в корне проекта. Для Chrome подбирайте драйвер по первым трём компонентам версии браузера (`MAJOR.MINOR.BUILD`), для Яндекса — по версии браузера из описания релиза. Драйверы не скачиваются при запуске тестов. При необходимости пути можно переопределить через `-Dwebdriver.chrome.driver`, `-Dyandex.driver` или `YANDEX_DRIVER` (для Яндекса).
+2. Установите Google Chrome и Яндекс.Браузер. Для Windows в репозиторий включён `drivers/chromedriver.exe`. Сравните первые три компонента его версии (`MAJOR.MINOR.BUILD`) с версией Chrome. Если они различаются, установите подходящий драйвер из [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/). Для Яндекс.Браузера распакуйте совместимый `yandexdriver.exe` из [YandexDriver](https://github.com/yandex/YandexDriver/releases) в `drivers/`. При необходимости путь к драйверу Chrome можно задать через `-Dwebdriver.chrome.driver`, а к драйверу Яндекса — через `-Dyandex.driver` или `YANDEX_DRIVER`.
 3. Из корня проекта проверьте версию драйвера и запустите весь набор:
 
    ```powershell

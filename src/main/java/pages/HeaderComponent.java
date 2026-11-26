@@ -1,0 +1,56 @@
+package pages;
+
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+public class HeaderComponent extends BasePage {
+
+    public HeaderComponent(WebDriver driver) {
+        super(driver);
+    }
+
+    // ======================================== Локаторы элементов страницы ========================================
+
+    // Личный кабинет в шапке
+    private final By accountLink = By.cssSelector("header a[href='/account']");
+
+    // Ссылка «Конструктор»
+    private final By constructorLink = By.linkText("Конструктор");
+
+    // Логотип Stellar Burgers
+    private final By stellarLogo = By.cssSelector("header [class*='header__logo'] a");
+
+    // ============================================= Методы страницы =============================================
+
+    /**
+     * Нажать «Личный кабинет».
+     */
+    @Step("Нажать «Личный кабинет»")
+    public HeaderComponent clickAccountLink() {
+        log.info("Нажать «Личный кабинет»");
+        wait.until(ExpectedConditions.elementToBeClickable(accountLink)).click();
+        return this;
+    }
+
+    /**
+     * Нажать «Конструктор».
+     */
+    @Step("Нажать «Конструктор»")
+    public HeaderComponent clickConstructorLink() {
+        log.info("Нажать «Конструктор»");
+        wait.until(ExpectedConditions.elementToBeClickable(constructorLink)).click();
+        return this;
+    }
+
+    /**
+     * Нажать логотип Stellar Burgers.
+     */
+    @Step("Нажать логотип Stellar Burgers")
+    public HeaderComponent clickStellarLogo() {
+        log.info("Нажать логотип Stellar Burgers");
+        wait.until(ExpectedConditions.elementToBeClickable(stellarLogo)).click();
+        return this;
+    }
+}
